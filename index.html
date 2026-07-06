@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noah Harrison — Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --ink:#1B1B18;
+    --ink-70:#4A4B45;
+    --ink-45:#8B8C84;
+    --line:#DEDBD2;
+    --accent:#2F4538;
+    --accent-soft:#EEF1EA;
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:700px;margin:0 auto;padding:0 32px;position:relative;}
+
+  /* ===== Watermark ===== */
+  .watermark{
+    position:absolute;
+    top:-10px;
+    right:-6px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:220px;
+    color:var(--ink);
+    opacity:0.035;
+    line-height:1;
+    pointer-events:none;
+    user-select:none;
+    z-index:0;
+  }
+  @media (max-width:680px){ .watermark{ font-size:130px; top:0; } }
+
+  /* ===== Header / masthead ===== */
+  header{
+    padding:88px 0 56px;
+    position:relative;
+    opacity:0;
+    animation:rise .8s ease forwards;
+  }
+  @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(42px, 7vw, 62px);
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    line-height:1.05;
+  }
+  .tagline{
+    margin-top:14px;
+    font-size:16.5px;
+    color:var(--ink-70);
+    max-width:480px;
+  }
+
+  .hr{
+    height:1px;
+    background:var(--line);
+    margin:34px 0 22px;
+    border:none;
+  }
+
+  .contact-line{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:13px;
+    letter-spacing:0.03em;
+    color:var(--ink-45);
+  }
+  .contact-line a{
+    color:var(--ink-70);
+    border-bottom:1px solid transparent;
+    padding-bottom:1px;
+    transition:border-color .2s, color .2s;
+  }
+  .contact-line a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* ===== Sections ===== */
+  section{ padding:52px 0; position:relative; z-index:1; }
+  section + section{ border-top:1px solid var(--line); }
+
+  .sec-label{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:34px;
+  }
+  .sec-label span{
+    font-family:var(--sans);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-45);
+    white-space:nowrap;
+  }
+  .sec-label .line{ flex:1; height:1px; background:var(--line); }
+
+  .lede{
+    font-size:16px;
+    color:var(--ink-70);
+    max-width:560px;
+    margin-bottom:32px;
+  }
+
+  /* ===== Experience / dossier rows ===== */
+  .entry{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    margin-bottom:38px;
+  }
+  .entry:last-child{ margin-bottom:0; }
+  @media (max-width:560px){
+    .entry{ grid-template-columns:1fr; gap:6px; }
+  }
+  .entry .when{
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    color:var(--ink-45);
+    padding-top:4px;
+  }
+  .entry h3{
+    font-family:var(--sans);
+    font-size:17.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .entry .org{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:15.5px;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .entry ul{
+    list-style:none;
+    color:var(--ink-70);
+    font-size:14.5px;
+  }
+  .entry ul li{
+    position:relative;
+    padding-left:16px;
+    margin-bottom:6px;
+  }
+  .entry ul li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--ink-45);
+  }
+
+  /* ===== Focus areas ===== */
+  .focus-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:560px){ .focus-row{ grid-template-columns:1fr; gap:28px; } }
+  .focus-item h4{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .focus-item p{
+    font-size:14px;
+    color:var(--ink-70);
+  }
+
+  /* ===== Skills ===== */
+  .skill-row{ margin-bottom:20px; }
+  .skill-row:last-child{ margin-bottom:0; }
+  .skill-row .cat{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-45);
+    margin-bottom:8px;
+  }
+  .skill-row .items{
+    font-size:14.5px;
+    color:var(--ink-70);
+    line-height:1.9;
+  }
+  .skill-row .items .sep{ color:var(--line); margin:0 9px; }
+
+  /* ===== Education ===== */
+  .edu-entry{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    margin-bottom:22px;
+  }
+  .edu-entry:last-child{ margin-bottom:0; }
+  @media (max-width:560px){ .edu-entry{ grid-template-columns:1fr; gap:4px; } }
+  .edu-entry .when{ font-size:12.5px; color:var(--ink-45); padding-top:2px; }
+  .edu-entry h3{ font-size:16.5px; font-weight:600; color:var(--ink); }
+  .edu-entry .sub{ font-family:var(--serif); font-style:italic; font-size:15px; color:var(--accent); margin-top:1px; }
+
+  /* ===== Contact / footer ===== */
+  .contact-block p{
+    font-size:15.5px;
+    color:var(--ink-70);
+    max-width:480px;
+    margin-bottom:28px;
+  }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-size:13.5px;
+    font-weight:500;
+    padding:13px 24px;
+    border-radius:2px;
+    letter-spacing:0.02em;
+    transition:background .2s, color .2s, border-color .2s;
+  }
+  .btn.primary{
+    background:var(--accent);
+    color:var(--paper);
+  }
+  .btn.primary:hover{ background:#243a2e; }
+  .btn.secondary{
+    border:1px solid var(--line);
+    color:var(--ink-70);
+  }
+  .btn.secondary:hover{ border-color:var(--ink-45); color:var(--ink); }
+
+  footer{
+    padding:36px 0 60px;
+    font-size:12px;
+    color:var(--ink-45);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    header{ opacity:1; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="watermark">NH</div>
+
+    <header>
+      <div class="eyebrow">Cybersecurity / SOC</div>
+      <h1>Noah Harrison</h1>
+      <p class="tagline">Cybersecurity student and SOC analyst, focused on incident response and vulnerability management for government-contractor environments.</p>
+
+      <hr class="hr">
+
+      <div class="contact-line">
+        <span>Elk Grove, California</span>
+        <a href="mailto:NoahMHarrison06@gmail.com">NoahMHarrison06@gmail.com</a>
+        <a href="tel:19165915304">(916) 591-5304</a>
+      </div>
+    </header>
+
+    <section id="experience">
+      <div class="sec-label"><span>Experience</span><div class="line"></div></div>
+
+      <div class="entry">
+        <div class="when">May 2025 —<br>Aug 2025</div>
+        <div>
+          <h3>SOC Intern</h3>
+          <div class="org">Ariento Inc.</div>
+          <ul>
+            <li>Supported SOC alert and incident-response ticket queues for government-contractor clients.</li>
+            <li>Ran vulnerability scans and remediation, and performed security event analysis with escalation as needed.</li>
+            <li>Managed email quarantine — reviewing and releasing safe mail while blacklisting phishing domains.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="when">May 2022 —<br>Oct 2023</div>
+        <div>
+          <h3>Lifeguard &amp; Swim Instructor</h3>
+          <div class="org">Cordova Recreation and Park District</div>
+          <ul>
+            <li>Maintained facility safety, pool chemical balance, and cleanliness standards.</li>
+            <li>Monitored patron safety across assigned areas and co-coached a competitive swim clinic.</li>
+            <li>Taught swimming fundamentals to students with little to no prior experience in the water.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="sec-label"><span>Areas of Focus</span><div class="line"></div></div>
+      <div class="focus-row">
+        <div class="focus-item">
+          <h4>Compliance &amp; Standards</h4>
+          <p>Hands-on exposure to government cybersecurity standards through Ariento, where roughly 80% of clients are government contractors — particularly the Security Technical Implementation Guide (STIG) and CMMC Level 2 practices.</p>
+        </div>
+        <div class="focus-item">
+          <h4>Systems &amp; Scripting</h4>
+          <p>Comfortable working across Linux and Windows virtual machines, with coding experience in C, C++, Python, and PowerShell for scripting and remediation tasks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec-label"><span>Skills</span><div class="line"></div></div>
+
+      <div class="skill-row">
+        <div class="cat">Technical</div>
+        <div class="items">
+          SOC Ticket Queues<span class="sep">·</span>Vulnerability Scanning<span class="sep">·</span>Email Quarantine &amp; Phishing Triage<span class="sep">·</span>CMMC Level 2<span class="sep">·</span>Linux &amp; Windows VMs<span class="sep">·</span>C / C++ / Python / PowerShell
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="cat">Interpersonal</div>
+        <div class="items">
+          Communication<span class="sep">·</span>Leadership<span class="sep">·</span>Teamwork<span class="sep">·</span>Customer Service
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="sec-label"><span>Education</span><div class="line"></div></div>
+
+      <div class="edu-entry">
+        <div class="when">In progress</div>
+        <div>
+          <h3>Grand Canyon University</h3>
+          <div class="sub">B.S. in Cybersecurity</div>
+        </div>
+      </div>
+      <div class="edu-entry">
+        <div class="when">Completed</div>
+        <div>
+          <h3>Pleasant Grove High School</h3>
+          <div class="sub">High School Diploma — Elk Grove, CA</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-block">
+      <div class="sec-label"><span>Get in Touch</span><div class="line"></div></div>
+      <p>Open to cybersecurity, SOC, and IT security opportunities — internships, entry-level analyst roles, and everything in between.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="mailto:NoahMHarrison06@gmail.com">Email me</a>
+        <a class="btn secondary" href="tel:19165915304">Call (916) 591-5304</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Noah Harrison — Cybersecurity</span>
+      <span>Updated 2026</span>
+    </footer>
+  </div>
+
+</body>
+</html>
