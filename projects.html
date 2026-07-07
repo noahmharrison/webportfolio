@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Noah Harrison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --ink:#1B1B18;
+    --ink-70:#4A4B45;
+    --ink-45:#8B8C84;
+    --line:#DEDBD2;
+    --accent:#2F4538;
+    --accent-soft:#EEF1EA;
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:700px;margin:0 auto;padding:0 32px;position:relative;}
+
+  /* ===== Top navigation ===== */
+  .topnav{
+    border-bottom:1px solid var(--line);
+    position:relative;
+    z-index:2;
+    background:var(--paper);
+  }
+  .navwrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:20px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .nav-name{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:15.5px;
+    color:var(--ink);
+  }
+  .nav-links{ display:flex; gap:26px; }
+  .nav-links a{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-45);
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a.active{ color:var(--accent); border-color:var(--accent); }
+
+  /* ===== Page header ===== */
+  .watermark{
+    position:absolute; top:-10px; right:-6px;
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:220px; color:var(--ink); opacity:0.035; line-height:1;
+    pointer-events:none; user-select:none; z-index:0;
+  }
+  @media (max-width:680px){ .watermark{ font-size:130px; top:0; } }
+
+  header{
+    padding:64px 0 48px;
+    position:relative;
+    opacity:0;
+    animation:rise .8s ease forwards;
+  }
+  @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{
+    font-family:var(--sans); font-size:11.5px; font-weight:600;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--accent);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:clamp(38px, 6vw, 54px); letter-spacing:-0.01em;
+    color:var(--ink); line-height:1.05;
+  }
+  .tagline{ margin-top:14px; font-size:16.5px; color:var(--ink-70); max-width:520px; }
+
+  /* ===== Sections ===== */
+  section{ padding:52px 0; position:relative; z-index:1; }
+  section + section{ border-top:1px solid var(--line); }
+
+  .sec-label{ display:flex; align-items:baseline; gap:16px; margin-bottom:34px; }
+  .sec-label span{
+    font-family:var(--sans); font-size:11.5px; font-weight:600;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-45);
+    white-space:nowrap;
+  }
+  .sec-label .line{ flex:1; height:1px; background:var(--line); }
+
+  /* ===== Project entries ===== */
+  .project{ margin-bottom:44px; }
+  .project:last-child{ margin-bottom:0; }
+  .project-top{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:16px; flex-wrap:wrap; margin-bottom:8px;
+  }
+  .project h3{
+    font-family:var(--sans); font-size:18px; font-weight:600; color:var(--ink);
+  }
+  .project .status{
+    font-size:11.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .project .stack{
+    font-family:var(--serif); font-style:italic; font-size:14.5px;
+    color:var(--ink-45); margin-bottom:12px;
+  }
+  .project p{ font-size:14.5px; color:var(--ink-70); max-width:600px; margin-bottom:10px; }
+  .project .links{ display:flex; gap:18px; margin-top:10px; }
+  .project .links a{
+    font-size:12.5px; font-weight:600; letter-spacing:0.03em;
+    color:var(--ink-70); border-bottom:1px solid var(--line);
+    padding-bottom:2px; transition:color .2s, border-color .2s;
+  }
+  .project .links a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  .placeholder-note{
+    font-size:13px; color:var(--ink-45); font-style:italic;
+    background:var(--accent-soft); border-radius:2px; padding:10px 14px;
+    margin-top:12px; max-width:600px;
+  }
+
+  footer{
+    padding:36px 0 60px; font-size:12px; color:var(--ink-45);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    header{ opacity:1; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="navwrap">
+      <span class="nav-name">Noah Harrison</span>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="watermark">NH</div>
+
+    <header>
+      <div class="eyebrow">Selected Work</div>
+      <h1>Projects</h1>
+      <p class="tagline">A running log of things I've built or broken on purpose — labs, scripts, and write-ups outside of coursework and internship work.</p>
+    </header>
+
+    <section id="project-list">
+      <div class="sec-label"><span>In Progress</span><div class="line"></div></div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>Homelab: Hardened VM &amp; Uptime Monitoring</h3>
+          <span class="status">Planned</span>
+        </div>
+        <div class="stack">Linux · Cloudflare Tunnel · systemd · uptime monitoring</div>
+        <p>A self-hosted virtual machine set up with a reverse proxy, no exposed inbound ports (via Cloudflare Tunnel), automatic restart on failure, and uptime/alerting to practice the same monitoring and recovery patterns used in SOC environments.</p>
+        <div class="placeholder-note">Replace this block with real details once it's built — what you configured, what broke, what you'd do differently.</div>
+      </div>
+
+      <div class="sec-label" style="margin-top:8px;"><span>Add More</span><div class="line"></div></div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>[Project title]</h3>
+          <span class="status">[Status]</span>
+        </div>
+        <div class="stack">[Tools / languages used]</div>
+        <p>[One or two sentences: what it does, why you built it, and one specific technical detail worth showing off.]</p>
+        <div class="links">
+          <a href="#">GitHub →</a>
+          <a href="#">Write-up →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Noah Harrison — Cybersecurity</span>
+      <span>Updated 2026</span>
+    </footer>
+  </div>
+
+</body>
+</html>
